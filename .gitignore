@@ -1,6 +1,7 @@
 *.sqlite*
 venv
 myenv
+.idea
 
 *.egg-info
 *.pot
