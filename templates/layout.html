@@ -1,0 +1,19 @@
+{% load static from static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <title>{% block title %} My Daily Quests {% endblock %}</title>
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li>Quests</li>
+        <li>Profile </li>
+    </ul>
+</div>
+{%  block content %}
+{%  endblock %}
+</body>
+</html>
