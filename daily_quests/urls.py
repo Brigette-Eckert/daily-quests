@@ -19,7 +19,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'quests', views.QuestViewSet)
+router.register(r'completions', views.CompletionViewSet)
+router.register(r'goals', views.GoalViewSet)
+router.register(r'challenges', views.ChallengeViewSet)
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
