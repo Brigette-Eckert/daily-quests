@@ -16,7 +16,7 @@ class Completion(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return self.date
+        return self.date.isoformat()
 
 
 class Goal(models.Model):
@@ -25,7 +25,7 @@ class Goal(models.Model):
     count = models.IntegerField()
 
     def __str__(self):
-        return "%s %s".format(self.count, self.interval)
+        return "Every {} days,  Goal: {}".format(self.count, self.interval_days)
 
 
 class Challenge(models.Model):
