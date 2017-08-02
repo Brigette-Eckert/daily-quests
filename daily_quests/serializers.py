@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Quest, Completion, Goal
+from .models import Quest, Completion, Goal, Challenge
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -29,4 +29,9 @@ class GoalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Goal
         goals = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-        fields = ('quest', 'interval', 'frequency', 'count')
+        fields = ('quest', 'interval_days', 'count')
+
+class ChallengeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Challenge
+        fields = ('name', 'description', 'interval_days', 'count')

@@ -21,19 +21,18 @@ class Completion(models.Model):
 
 class Goal(models.Model):
     quest = models.ForeignKey(Quest, on_delete=models.CASCADE, related_name='goals')
-    interval = models.CharField(max_length=40)
+    interval_days = models.IntegerField()
     count = models.IntegerField()
 
     def __str__(self):
         return "%s %s".format(self.count, self.interval)
 
-class GoalInterval(models.Model):
-    name = models.CharField(max_length=20)
-    interval = models.DateTimeField()
-
 
 class Challenge(models.Model):
     name = models.CharField(max_length=80)
     description = models.TextField()
-    interval = models.CharField(max_length=40)
+    interval_days = models.IntegerField()
     count = models.IntegerField()
+
+    def __str__(self):
+        return self.name
