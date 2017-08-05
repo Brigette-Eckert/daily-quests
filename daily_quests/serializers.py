@@ -1,14 +1,37 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import Quest, Completion, Goal, Challenge
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        quests = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+        fields = ('url', 'username', 'email', 'quests')
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+
+class QuestSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
-        fields = ('url', 'name')
+        model = Quest
+        goals = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+        completions = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+        fields = ('user', 'name', 'description', 'goals', 'completions')
+
+
+class CompletionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Completion
+        fields = ('quest', 'date')
+
+
+class GoalSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Goal
+        goals = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+        fields = ('quest', 'interval_days', 'count')
+
+class ChallengeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Challenge
+        fields = ('name', 'description', 'interval_days', 'count')
